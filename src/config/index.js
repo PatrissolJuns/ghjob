@@ -5,6 +5,6 @@ export const SCREEN_PADDING = {
 };
 
 export const PROGRAMMING_ICON = {
-    width: 50,
-    height: 50,
+    width: 30,
+    height: 30,
 };
