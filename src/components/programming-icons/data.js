@@ -32,7 +32,7 @@ module.exports = [
     },
     {
         id: 4,
-        name: 'CPlusPlus',
+        name: 'C++',
         component: <CPlusPlus />,
         color: '',
     },
