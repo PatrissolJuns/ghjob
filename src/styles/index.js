@@ -64,6 +64,16 @@ const GENERAL_STYLE_SETTING = {
     },
     MIN_CARD_HEIGHT: 186,
     MAX_CARD_HEIGHT: 244.5,
+    CENTER_HOR_VER: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    HIT_SLOP: {
+        top: 20,
+        left: 20,
+        bottom: 20,
+        right: 20
+    }
 };
 
 const GLOBAL_HEADER_STYLE = {
