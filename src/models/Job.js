@@ -1,7 +1,7 @@
 import moment from 'moment';
 import {removeTags} from '../service/helper';
 
-export class Job {
+export default class Job {
     constructor(job) {
         this.id = job.id;
         this.type = job.type;

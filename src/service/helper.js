@@ -15,3 +15,11 @@ export const removeTags = (text) => {
     // Apply last regex
     return filtered.replace(regex2, "");
 };
+
+export const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+    return layoutMeasurement.height + contentOffset.y >= contentSize.height - 20;
+};
+
+export const isCloseToTop = ({layoutMeasurement, contentOffset, contentSize}) => {
+    return contentOffset.y == 0;
+};

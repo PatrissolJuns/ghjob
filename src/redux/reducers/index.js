@@ -1,10 +1,14 @@
 import {USER_LOGOUT} from '../types';
 import { combineReducers } from 'redux';
 import appLoadingReducer from './appLoadingReducer';
+import BookmarkedJobsReducer from './BookmarkedJobsReducer';
+import AllJobsReducer from './AllJobsReducer';
 
 // Main reducer
 const mainReducer = combineReducers({
-    appLoading: appLoadingReducer
+    appLoading: appLoadingReducer,
+    bookmarkedJobs: BookmarkedJobsReducer,
+    allJobs: AllJobsReducer,
 });
 
 /**

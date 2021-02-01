@@ -9,6 +9,7 @@ export const WHITE = '#FFFFFF';
 export const WHITE_LIGHT = '#fafafc';
 export const WHITE_MEDIUM = '#f7f6fb';
 export const WHITE_THIN = '#eaebf2';
+export const FORM_BG = '#f3f4f8';
 export const BLUE = '#1778F2';
 export const BLACK = '#000000';
 export const DARK = '#312651';
@@ -17,6 +18,7 @@ export const DARK_SECONDARY = '#1C1A32';
 export const TEXT_INPUT_COLOR = '#1C1A32';
 // export const TEXT_INPUT_COLOR_GRAY = '#F9F9F9';
 export const TEXT_INPUT_COLOR_GRAY = '#e6e6e6';
+export const TEXT_PRIMARY = '#83829A';
 
 // ACTIONS
 export const SUCCESS = '#3adb76';
