@@ -5,13 +5,14 @@ import PlText from '../components/PLText';
 import {Text} from 'react-native-elements';
 import {getAllJobs} from '../redux/actions';
 import HeaderPage from '../components/HeaderPage';
-import RecentJobItem from '../components/RecentJobItem';
+import JobItemWide from '../components/JobItemWide';
 import JobItemCircle from '../components/JobItemCircle';
 import BottomPadding from '../components/BottomPadding';
 import FullScreenLoader from '../components/FullScreenLoader';
 import languageData from '../components/programming-icons/data';
 import {isCloseToBottom, isCloseToTop} from '../service/helper';
 import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
+import FetchFailedComponent from '../components/FetchFailedComponent';
 import {RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
 
 /**
@@ -59,7 +60,7 @@ class Home extends Component {
         }
 
         if (error) {
-            return (<Text>Something happened</Text>)
+            return (<FetchFailedComponent onRetryClick={this.loadData} />)
         }
 
         const recentJobs = allJobs.data.slice(0, 10);
@@ -126,12 +127,12 @@ class Home extends Component {
                     </ScrollView>
 
                     <View style={[styles.sector, {marginTop: 30}]}>
-                        <Text style={styles.sectionTitle}>Recent jobs</Text>
+                        <Text style={styles.sectionTitle}>More jobs</Text>
                     </View>
 
                     <ScrollView>
                         {moreJobs.map((job, index) => (
-                            <RecentJobItem
+                            <JobItemWide
                                 key={index}
                                 // color={i % 2 !== 0 ? 'primary' : 'white'}
                                 job={job}

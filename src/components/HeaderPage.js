@@ -1,4 +1,5 @@
 import React from 'react';
+import {SEARCH} from '../urls/routes';
 import { Icon } from "react-native-elements";
 import {Colors, GENERAL_STYLE_SETTING} from '../styles';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
@@ -19,8 +20,13 @@ const HeaderPage = ({navigation}) => {
                 </TouchableOpacity>
                 <View style={styles.wrapper}>
                     <TouchableOpacity
-                        onPress={() => navigation.toggleDrawer()}
-                        hitSlop={GENERAL_STYLE_SETTING.HIT_SLOP}
+                        onPress={() => navigation.navigate(SEARCH)}
+                        hitSlop={{
+                            top: 20,
+                            left: 20,
+                            bottom: 20,
+                            right: 5
+                        }}
                         style={{marginRight: 10}}
                     >
                         <Icon
@@ -30,7 +36,12 @@ const HeaderPage = ({navigation}) => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => navigation.toggleDrawer()}
-                        hitSlop={GENERAL_STYLE_SETTING.HIT_SLOP}
+                        hitSlop={{
+                            top: 20,
+                            left: 5,
+                            bottom: 20,
+                            right: 20
+                        }}
                     >
                         <Icon
                             name={"heart-multiple"}

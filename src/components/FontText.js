@@ -4,7 +4,9 @@ import {Typography} from '../styles';
 
 const FontText = ({style, ...restProps}) => {
     const _style = style
-        ? {...Typography.FONT_REGULAR, ...style}
+        ? Array.isArray(style)
+            ? {...Typography.FONT_REGULAR, ...style.reduce((acc, b) => ({...acc, ...b}), {})}
+            : {...Typography.FONT_REGULAR, ...style}
         : {...Typography.FONT_REGULAR};
     return (
         <Text

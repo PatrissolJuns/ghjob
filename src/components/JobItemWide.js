@@ -1,12 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
 import BookedJob from './BookedJob';
+import {JOB} from '../urls/routes';
+import { useNavigation } from "@react-navigation/native";
+import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const RecentJobItem = ({job, color}) => {
+const JobItemWide = ({job, color}) => {
+    const navigation = useNavigation();
+
+    const onPress = () => {
+        navigation.navigate(JOB, {
+            jobId: job.id,
+        });
+    };
+
     return (
-        <View style={[styles.container]}>
+        <TouchableOpacity
+            onPress={onPress}
+            style={[styles.container]}
+            hitSlop={GENERAL_STYLE_SETTING.HIT_SLOP}
+        >
             {/*<View style={{flex: 3}}>*/}
             <View style={styles.imgWrapper}>
                 <Image
@@ -37,7 +51,7 @@ const RecentJobItem = ({job, color}) => {
                     <BookedJob jobId={job.id} size={15} />
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 };
 
@@ -107,13 +121,13 @@ const styles = StyleSheet.create({
     }
 });
 
-RecentJobItem.propTypes = {
+JobItemWide.propTypes = {
     color: PropTypes.oneOf(['primary', 'white']).isRequired,
     job: PropTypes.any.isRequired,
 };
 
-RecentJobItem.defaultProps = {
+JobItemWide.defaultProps = {
     color: 'primary',
 };
 
-export default RecentJobItem;
+export default JobItemWide;
