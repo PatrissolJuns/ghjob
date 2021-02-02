@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {StatusBar} from 'react-native';
 import HomeNavigator from './HomeNavigator';
 import {setAppLoading, setBookmarkedJobs} from '../redux/actions';
-import {HOME, HOW_TO_APPLY, JOB, ONBOARDING, SEARCH} from '../urls/routes';
+import {HOME, HOW_TO_APPLY, JOB, ONBOARDING, SEARCH, BOOKMARKED_JOBS} from '../urls/routes';
 import {getAsyncData} from '../service/asynsStorage';
 import OnBoarding from '../screens/onboarding/OnBoarding';
 import FullScreenLoader from '../components/FullScreenLoader';
@@ -13,6 +13,7 @@ import HowToApply from '../screens/HowToApply';
 import JobScreen from '../screens/JobScreen';
 import {PRIMARY} from '../styles/colors';
 import Search from '../screens/Search';
+import BookmarkedJobs from '../screens/BookmarkedJobs';
 
 const Stack = createStackNavigator();
 
@@ -98,6 +99,13 @@ class MainNavigator extends Component {
                                     }}
                                     name={SEARCH}
                                     component={Search}
+                                />
+                                <Stack.Screen
+                                    options={{
+                                        headerShown: false,
+                                    }}
+                                    name={BOOKMARKED_JOBS}
+                                    component={BookmarkedJobs}
                                 />
                                 <Stack.Screen
                                     options={{

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Dimensions, View} from 'react-native';
+import {View} from 'react-native';
 import FontText from '../../components/FontText';
 import {TEXT_PRIMARY} from '../../styles/colors';
-import NotFoundSvg from "../../assets/images/undraw_void_3ggu.svg";
+import NotFoundSvg from "../../assets/images/not_found.svg";
 
 const NotFound = () => {
     return (

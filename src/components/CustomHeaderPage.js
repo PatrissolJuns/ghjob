@@ -27,9 +27,9 @@ const CustomHeaderPage = props => {
             <FontText style={styles.title}>
                 {title}
             </FontText>
-            <FontText style={{color: backgroundColor}}>
+            {/*<FontText style={{color: backgroundColor}}>
                 Hide.
-            </FontText>
+            </FontText>*/}
         </View>
     );
 };
@@ -47,14 +47,24 @@ CustomHeaderPage.defaultProps = {
 const styles = StyleSheet.create({
     container: {
        flexDirection: 'row',
-       justifyContent: 'space-between',
+       // justifyContent: 'space-between',
        alignItems: 'center',
        ...GENERAL_STYLE_SETTING.SCREEN_PADDING_HORIZONTAL,
+        marginBottom: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     title: {
         fontSize: 20,
         marginVertical: 20,
         color: Colors.DARK,
+        marginLeft: 25,
         // ...Typography.FONT_BOLD
     }
 });

@@ -1,6 +1,6 @@
 import React from 'react';
-import {SEARCH} from '../urls/routes';
 import { Icon } from "react-native-elements";
+import {BOOKMARKED_JOBS, SEARCH} from '../urls/routes';
 import {Colors, GENERAL_STYLE_SETTING} from '../styles';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 
@@ -35,7 +35,7 @@ const HeaderPage = ({navigation}) => {
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => navigation.toggleDrawer()}
+                        onPress={() => navigation.navigate(BOOKMARKED_JOBS)}
                         hitSlop={{
                             top: 20,
                             left: 5,

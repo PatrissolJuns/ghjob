@@ -39,7 +39,7 @@ class Search extends Component {
     constructor(props) {
         super(props);
 
-        const searchParams = this.props.route.params.searchParams;
+        const searchParams = this.props.route.params ? this.props.route.params.searchParams : null;
 
         this.state = {
             searched: searchParams && searchParams.searched ? searchParams.searched : '',
