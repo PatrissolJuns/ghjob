@@ -14,5 +14,9 @@ export const HOME_PAGE_NAVIGATOR = {
     HEIGHT: 56,
 };
 
+export const ABOUT_LINKS = {
+    AUTHOR: 'https://patrissol-juns.com',
+    PROJECT: 'https://github.com/PatrissolJuns/ghjob',
+};
 
 export const BACKEND_URL = 'https://jobs.github.com/';
