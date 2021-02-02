@@ -38,10 +38,20 @@ const defaultFilters = {
 class Search extends Component {
     constructor(props) {
         super(props);
+
+        const searchParams = this.props.route.params.searchParams;
+
         this.state = {
-            searched: '',
+            searched: searchParams && searchParams.searched ? searchParams.searched : '',
             showFilter: false,
-            filters: defaultFilters,
+            filters: {
+                fullTime: searchParams && searchParams.fullTime
+                    ? searchParams.fullTime : defaultFilters.fullTime,
+                location: searchParams && searchParams.location
+                    ? searchParams.location : defaultFilters.location,
+                publishedAt: searchParams && searchParams.publishedAt
+                    ? searchParams.publishedAt : defaultFilters.publishedAt,
+            },
             jobs: [],
             error: null,
             loading: false,

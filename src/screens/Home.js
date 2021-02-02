@@ -14,6 +14,7 @@ import {isCloseToBottom, isCloseToTop} from '../service/helper';
 import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
 import FetchFailedComponent from '../components/FetchFailedComponent';
 import {RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
+import {SEARCH} from '../urls/routes';
 
 /**
  * Home Screen
@@ -122,6 +123,11 @@ class Home extends Component {
                                 key={id}
                                 name={name}
                                 component={component}
+                                onPress={() => navigation.navigate(SEARCH, {
+                                    searchParams: {
+                                        searched: name
+                                    }
+                                })}
                             />
                         ))}
                     </ScrollView>
