@@ -162,7 +162,7 @@ class JobScreen extends Component {
                     <FontText style={styles.title}>
                         {job.title}
                     </FontText>
-                    <View style={{flexDirection: 'row'}}>
+                    <View style={{flexDirection: 'row', marginTop: 5}}>
                         <View style={styles.locationWrapper}>
                             <Icon
                                 size={14}

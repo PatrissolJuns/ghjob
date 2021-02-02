@@ -10,10 +10,13 @@ const reducer = (state = initialState, action) => {
             setAsyncData('bookmarkedJobs', JSON.stringify(action.payload));
             return action.payload;
         case TOGGLE_BOOKMARKED_JOB:
-            const jobId = action.payload;
-            const newBookmarkedJobs = state.includes(jobId)
-                ? state.filter(id => id !== jobId)
-                : [...state, jobId];
+            const jobId = action.payload.id;
+
+            const isBookmarked = state.find(j => j.id === jobId) !== undefined;
+
+            const newBookmarkedJobs = isBookmarked
+                ? state.filter(j => j.id !== jobId)
+                : [...state, action.payload];
 
             // Save new state
             setAsyncData('bookmarkedJobs', JSON.stringify(newBookmarkedJobs));

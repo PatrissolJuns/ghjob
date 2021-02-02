@@ -48,7 +48,7 @@ const JobItemWide = ({job, color}) => {
 
                 {/*<View style={{backgroundColor: 'green', flex: 1}}>*/}
                 <View>
-                    <BookedJob jobId={job.id} size={15} />
+                    <BookedJob job={job} size={15} />
                 </View>
             </View>
         </TouchableOpacity>

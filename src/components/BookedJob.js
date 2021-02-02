@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import { Icon } from 'react-native-elements';
 import {TouchableOpacity} from 'react-native';
-import {GENERAL_STYLE_SETTING} from '../styles';
 import {DARK, PRIMARY} from '../styles/colors';
-import {connect} from 'react-redux';
+import {GENERAL_STYLE_SETTING} from '../styles';
 import {toggleBookmarkedJob} from '../redux/actions';
 
-const BookedJob = ({jobId, size, color, bookmarkedJobs, toggleBookmarkedJob}) => {
-    // console.log("bookmarkedJobs => ", bookmarkedJobs);
-    const isBookmarked = bookmarkedJobs.includes(jobId);
+const BookedJob = ({job, size, color, bookmarkedJobs, toggleBookmarkedJob}) => {
+    const jobId = job.id;
+
+    const isBookmarked = bookmarkedJobs.find(j => j.id === jobId) !== undefined;
 
     const handleOnPress = () => {
-        console.log("jobId => ", jobId, " bookmarkedJobs => ", bookmarkedJobs);
-        toggleBookmarkedJob(jobId);
+        toggleBookmarkedJob(job);
     };
 
     return (
@@ -34,13 +34,12 @@ const BookedJob = ({jobId, size, color, bookmarkedJobs, toggleBookmarkedJob}) =>
 };
 
 BookedJob.propTypes = {
-    jobId: PropTypes.any.isRequired,
+    job: PropTypes.any.isRequired,
     size: PropTypes.number.isRequired,
     color: PropTypes.string.isRequired,
 };
 
 BookedJob.defaultProps = {
-    jobId: '1',
     size: 12,
     color: DARK
 };

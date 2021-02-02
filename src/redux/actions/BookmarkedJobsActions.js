@@ -1,15 +1,15 @@
 import {BOOKMARKED_JOBS, TOGGLE_BOOKMARKED_JOB} from '../types';
 
-export function setBookmarkedJobs(jobsId) {
+export function setBookmarkedJobs(jobs) {
     return {
         type: BOOKMARKED_JOBS,
-        payload: jobsId,
+        payload: jobs,
     };
 }
 
-export function toggleBookmarkedJob(jobId) {
+export function toggleBookmarkedJob(job) {
     return {
         type: TOGGLE_BOOKMARKED_JOB,
-        payload: jobId,
+        payload: job,
     };
 }

@@ -42,7 +42,7 @@ const JobItemCircle = ({job, color}) => {
                     source={{uri: job.company.logo}}
                     style={styles.img}
                 />
-                <BookedJob jobId={job.id} size={15} color={Object.values(bookedColor)[0]} />
+                <BookedJob job={job} size={15} color={Object.values(bookedColor)[0]} />
             </View>
             <View>
                 <Text
