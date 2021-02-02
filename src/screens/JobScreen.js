@@ -1,3 +1,4 @@
+import moment from 'moment';
 import Job from '../models/Job';
 import {connect} from 'react-redux';
 import React, {Component} from 'react';
@@ -7,6 +8,7 @@ import {HOW_TO_APPLY} from '../urls/routes';
 import HTML from 'react-native-render-html';
 import {getOneJobById} from '../urls/backend';
 import FontText from '../components/FontText';
+import FastImage from 'react-native-fast-image';
 import {toggleBookmarkedJob} from '../redux/actions';
 import FullScreenLoader from '../components/FullScreenLoader';
 import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
@@ -22,7 +24,6 @@ import {
     StyleSheet,
     TouchableOpacity,
 } from 'react-native';
-import moment from 'moment';
 
 const width = Dimensions.get('window').width;
 const tagsColors = tags.reduce((acc, b) => ({...acc, [b]: {color: Colors.DARK}}), {});
@@ -165,8 +166,11 @@ class JobScreen extends Component {
                 </View>
                 <View style={styles.details}>
                     <View style={styles.imgWrapper}>
-                        <Image
-                            source={{uri: job.company.logo}}
+                        <FastImage
+                            source={{
+                                uri: job.company.logo,
+                                priority: FastImage.priority.high
+                            }}
                             style={styles.img}
                         />
                     </View>
@@ -245,8 +249,11 @@ class JobScreen extends Component {
                             marginVertical: 20,
                             borderRadius: 20,
                         }}>
-                            <Image
-                                source={{uri: job.company.logo}}
+                            <FastImage
+                                source={{
+                                    uri: job.company.logo,
+                                    priority: FastImage.priority.high
+                                }}
                                 style={styles.img}
                             />
                             <FontText style={[styles.subTitle, {fontSize: 20, marginVertical: 20, ...Typography.FONT_BOLD}]}>

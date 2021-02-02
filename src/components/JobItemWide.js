@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BookedJob from './BookedJob';
 import {JOB} from '../urls/routes';
+import FastImage from 'react-native-fast-image';
 import { useNavigation } from "@react-navigation/native";
 import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const JobItemWide = ({job, color}) => {
     const navigation = useNavigation();
@@ -23,8 +24,11 @@ const JobItemWide = ({job, color}) => {
         >
             {/*<View style={{flex: 3}}>*/}
             <View style={styles.imgWrapper}>
-                <Image
-                    source={{uri: job.company.logo}}
+                <FastImage
+                    source={{
+                        uri: job.company.logo,
+                        priority: FastImage.priority.high
+                    }}
                     style={styles.img}
                 />
             </View>

@@ -4,9 +4,10 @@ import {JOB} from '../urls/routes';
 import PropTypes from 'prop-types';
 import BookedJob from './BookedJob';
 import {tags} from "../service/helper";
+import FastImage from 'react-native-fast-image';
 import {useNavigation} from '@react-navigation/native';
 import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
-import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const tagWhite = tags.reduce((acc, b) => ({...acc, [b]: {color: Colors.WHITE}}), {});
 const tagTextSize = tags.reduce((acc, b) => ({...acc, [b]: {fontSize: 16}}), {});
@@ -37,8 +38,11 @@ const JobItemCircle = ({job, color}) => {
             hitSlop={GENERAL_STYLE_SETTING.HIT_SLOP}
         >
             <View style={styles.imgWrapper}>
-                <Image
-                    source={{uri: job.company.logo}}
+                <FastImage
+                    source={{
+                        uri: job.company.logo,
+                        priority: FastImage.priority.high
+                    }}
                     style={styles.img}
                 />
                 <BookedJob job={job} size={15} color={Object.values(bookedColor)[0]} />
