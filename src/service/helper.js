@@ -23,3 +23,7 @@ export const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize})
 export const isCloseToTop = ({layoutMeasurement, contentOffset, contentSize}) => {
     return contentOffset.y == 0;
 };
+
+export const sortJobs = (jobs) => {
+    return jobs.sort((a, b) => b.createdAt.valueOf() - a.createdAt.valueOf());
+};

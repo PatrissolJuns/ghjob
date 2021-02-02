@@ -13,8 +13,26 @@ export const getOneJobById = (jobId) => {
         });
 };
 
-export const getAllJobs = (page = 0) => {
+export const getAllJobs = (page = 1) => {
     return axios.get(`positions.json?page=${page}`)
+        .then(result => {
+            return Promise.resolve(result.data);
+        })
+        .catch(error => {
+            return Promise.reject(error);
+        });
+};
+
+export const searchJobs = (search, fullTime, location, page = 1) => {
+    let url = `positions.json?page=${page}`;
+    if (search)
+        url = url + `&search=${search.replace(' ', '+')}`;
+    if (fullTime)
+        url = url + `&full_time=true`;
+    if (location)
+        url = url + `location=${location.replace(' ', '+')}`;
+
+    return axios.get(url)
         .then(result => {
             return Promise.resolve(result.data);
         })

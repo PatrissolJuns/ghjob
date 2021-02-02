@@ -7,18 +7,18 @@ const initMoment = () => {
             past:   "%s ago",
             s  : 'seconds',
             ss : '%dsec',
-            m:  "am",
+            m:  "a min",
             mm: "%dm",
-            h:  "anh",
+            h:  "an h",
             hh: "%dh",
-            d:  "ad",
+            d:  "a day",
             dd: "%dd",
-            w:  "aw ",
+            w:  "a week ",
             ww: "%dw",
-            M:  "amo",
+            M:  "a month",
             MM: "%dmo",
-            y:  "ay",
-            yy: "%dy"
+            y:  "a year",
+            yy: "%dyr"
         }
     });
 };

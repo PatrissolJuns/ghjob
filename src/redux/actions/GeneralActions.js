@@ -8,13 +8,12 @@ export function logout() {
     };
 }
 
-export const getAllJobs = (page = 0, shouldRefresh = false) => dispatch => {
+export const getAllJobs = (page = 1, shouldRefresh = false) => dispatch => {
     const typeBase = 'ALL_JOBS';
     dispatch({ type: `${typeBase}` });
     return _getAllJobs(page)
         .then((response) => {
             if (response) {
-                console.log("response.length => ", response.length);
                 dispatch({
                     type: `${typeBase}_SUCCESS`,
                     payload: {
