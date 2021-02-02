@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default HeaderPage;
+export default React.memo(HeaderPage);
