@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
+import * as sizes from './sizes';
+import PropTypes from 'prop-types';
 import {
     Image,
+    Text,
+    View,
     PixelRatio,
     StyleSheet,
-    Text,
-    TouchableOpacity,
     ViewPropTypes,
-    View
-} from 'react-native'
-import * as sizes from './sizes'
-import PropTypes from 'prop-types'
+    TouchableOpacity,
+} from 'react-native';
 
-const viewPropTypes = ViewPropTypes || View.propTypes
+const viewPropTypes = ViewPropTypes || View.propTypes;
 
 const propTypes = {
     /*
@@ -47,8 +47,8 @@ const propTypes = {
     /*
      * Function called when clicking on the right icon of the chip
      */
-    onDelete: PropTypes.function
-}
+    onDelete: PropTypes.func
+};
 
 const MaterialChip = React.memo((props) => {
 
@@ -263,11 +263,11 @@ const MaterialChip = React.memo((props) => {
     )
 })
 
-MaterialChip.propTypes = propTypes
+// MaterialChip.propTypes = propTypes;
 
-Object.assign(MaterialChip, sizes)
+Object.assign(MaterialChip, sizes);
 
-export default MaterialChip
+export default MaterialChip;
 
 export const chipStyle = StyleSheet.create({
     mainContainer: {
