@@ -22,6 +22,7 @@ import {
     StyleSheet,
     TouchableOpacity,
 } from 'react-native';
+import moment from 'moment';
 
 const width = Dimensions.get('window').width;
 const tagsColors = tags.reduce((acc, b) => ({...acc, [b]: {color: Colors.DARK}}), {});
@@ -31,15 +32,25 @@ class JobScreen extends Component {
         super(props);
         this.jobId = this.props.route.params.jobId;
 
+        this.job = this.props.route.params.job
+            ? JSON.parse(this.props.route.params.job)
+            : null;
+
+        // In case we've sent job object, restore moment value
+        if (this.job)
+            this.job.createdAt = moment(new Date(this.job.createdAt));
+
         this.state = {
-            job: null,
+            job: this.job ? this.job : null,
             activeTab: 0,
             loading: false,
         }
     }
 
     componentDidMount() {
-        this.loadData();
+        if (!this.job) {
+            this.loadData();
+        }
     }
 
     loadData = () => {

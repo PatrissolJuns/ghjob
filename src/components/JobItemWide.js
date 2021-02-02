@@ -11,7 +11,7 @@ const JobItemWide = ({job, color}) => {
 
     const onPress = () => {
         navigation.navigate(JOB, {
-            jobId: job.id,
+            job: JSON.stringify(job),
         });
     };
 

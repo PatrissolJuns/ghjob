@@ -1,13 +1,12 @@
 import _ from "lodash";
 import React from 'react';
+import {JOB} from '../urls/routes';
 import PropTypes from 'prop-types';
 import BookedJob from './BookedJob';
 import {tags} from "../service/helper";
-import HTML from 'react-native-render-html';
-import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
 import {useNavigation} from '@react-navigation/native';
-import {HOME, JOB} from '../urls/routes';
+import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
+import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const tagWhite = tags.reduce((acc, b) => ({...acc, [b]: {color: Colors.WHITE}}), {});
 const tagTextSize = tags.reduce((acc, b) => ({...acc, [b]: {fontSize: 16}}), {});
@@ -27,7 +26,7 @@ const JobItemCircle = ({job, color}) => {
 
     const onPress = () => {
         navigation.navigate(JOB, {
-            jobId: job.id,
+            job: JSON.stringify(job),
         });
     };
 
