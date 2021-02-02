@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 
 /**
@@ -12,12 +12,20 @@ const RadioButton = props => {
     const {
         options,
         onChange,
+        selected,
         checkedColor,
         containerStyle,
         defaultSelected,
     } = props;
 
     const [active, setActive] = useState(defaultSelected ? defaultSelected : options[0]);
+
+    if (selected) {
+        useEffect(() => {
+            console.log("inside changed sel");
+            setActive(selected);
+        }, [selected]);
+    }
 
     const onOptionPress = (currentOption) => {
         if (currentOption.value !== active.value) {

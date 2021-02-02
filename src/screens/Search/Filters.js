@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import React, {useState} from 'react';
 import {CheckBox} from 'react-native-elements';
 import FontText from '../../components/FontText';
+import React, {useState, useEffect} from 'react';
 import RadioButton from '../../components/RadioButton';
 import PublishedTimeType from '../../enums/PublishedTimeType';
 import TextInputComponent from '../../components/TextInputComponent';
@@ -17,13 +17,18 @@ const width = Dimensions.get('window').width;
  * @constructor
  */
 const Filters = props => {
+    // console.log("Filters props => ", props);
     const {
         onFilterDone
     } = props;
 
-    const [fullTime, setFullTime] = useState(false);
-    const [location, setLocation] = useState("");
-    const [publishedAt, setPublishedAt] = useState(null);
+    const [fullTime, setFullTime] = useState(props.fullTime);
+    const [location, setLocation] = useState(props.location);
+    const [publishedAt, setPublishedAt] = useState(props.publishedAt);
+
+    useEffect(() => { setFullTime(props.fullTime) }, [props.fullTime]);
+    useEffect(() => { setLocation(props.location) }, [props.location]);
+    useEffect(() => { setPublishedAt(props.publishedAt) }, [props.publishedAt]);
 
     return (
         <View style={styles.container}>
@@ -68,9 +73,10 @@ const Filters = props => {
                         Published At
                     </Text>
                     <RadioButton
+                        selected={publishedAt}
                         containerStyle={{marginLeft: 10}}
                         onChange={selectedOption => setPublishedAt(selectedOption)}
-                        defaultSelected={{name: "Last month", value: PublishedTimeType.LAST_MONTH}}
+                        defaultSelected={{name: "Any time", value: PublishedTimeType.ANY_TIME}}
                         options={[
                             {name: "Last 24 hours", value: PublishedTimeType.LAST_24H},
                             {name: "Last week", value: PublishedTimeType.LAST_WEEK},

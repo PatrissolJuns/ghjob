@@ -1,3 +1,6 @@
+import moment from 'moment';
+import PublishedTimeType from '../enums/PublishedTimeType';
+
 export const tags = ['a', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'strong', 'span', 'i', 'ul', 'li'];
 
 /**
@@ -26,4 +29,15 @@ export const isCloseToTop = ({layoutMeasurement, contentOffset, contentSize}) =>
 
 export const sortJobs = (jobs) => {
     return jobs.sort((a, b) => b.createdAt.valueOf() - a.createdAt.valueOf());
+};
+
+export const getPublishedAtTime = (publishedAt) => {
+      switch (publishedAt) {
+          case PublishedTimeType.LAST_24H:
+              return moment().subtract('24', 'hours');
+          case PublishedTimeType.LAST_MONTH:
+              return moment().subtract('1', 'month');
+          default:
+              return moment().subtract('1', 'weeks');
+      }
 };
