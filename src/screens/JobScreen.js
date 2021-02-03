@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
     },
     content: {
         marginVertical: 20,
-        marginBottom: GENERAL_STYLE_SETTING.BUTTON_HEIGHT.height + 5,
+        marginBottom: GENERAL_STYLE_SETTING.BUTTON_HEIGHT.height + 40,
         backgroundColor: Colors.WHITE,
         padding: 15,
         borderRadius: 15,
