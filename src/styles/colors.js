@@ -20,6 +20,9 @@ export const TEXT_INPUT_COLOR = '#1C1A32';
 export const TEXT_INPUT_COLOR_GRAY = '#e6e6e6';
 export const TEXT_PRIMARY = '#83829A';
 
+export const GHJOB_LOGO_WHITE = '#eff6fe';
+export const GHJOB_LOGO_GRAY = '#d9e4ef';
+
 // ACTIONS
 export const SUCCESS = '#3adb76';
 export const WARNING = '#ffae00';

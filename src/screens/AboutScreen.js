@@ -4,10 +4,9 @@ import FontText from '../components/FontText';
 import {Linking, StyleSheet, Alert} from 'react-native';
 import WhiteLogoSvg from "../assets/images/white_logo.svg";
 import {GENERAL_STYLE_SETTING, Typography} from '../styles';
+import {GHJOB_LOGO_GRAY, GHJOB_LOGO_WHITE} from '../styles/colors';
 import FastImageBackground from '../components/FastImageBackground';
 import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
-
-const _white = '#eff6fe', _gray = '#d9e4ef';
 
 const AboutScreen = () => {
     const handleOnNavigateToLink = (link) => {
@@ -79,24 +78,24 @@ const styles = StyleSheet.create({
         ...GENERAL_STYLE_SETTING.SCREEN_PADDING,
     },
     title: {
-        color: _white,
+        color: GHJOB_LOGO_WHITE,
         marginBottom: 10,
         ...Typography.FONT_BOLD,
         ...GENERAL_STYLE_SETTING.BIG_TITLE_FONT_SIZE,
     },
     paragraph: {
-        color: _gray,
+        color: GHJOB_LOGO_GRAY,
         textAlign: 'justify',
         marginTop: 40,
         marginBottom: 30,
     },
     projectLink: {
-        color: _white,
+        color: GHJOB_LOGO_WHITE,
         textDecorationLine: 'underline',
         ...Typography.FONT_BOLD,
     },
     footer: {
-        color: _gray,
+        color: GHJOB_LOGO_GRAY,
         textAlign: 'center',
         ...Typography.FONT_BOLD,
     },
