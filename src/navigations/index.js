@@ -1,19 +1,19 @@
 import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import {StatusBar} from 'react-native';
+import Search from '../screens/Search';
+import {PRIMARY} from '../styles/colors';
 import HomeNavigator from './HomeNavigator';
-import {setAppLoading, setBookmarkedJobs} from '../redux/actions';
-import {HOME, HOW_TO_APPLY, JOB, ONBOARDING, SEARCH, BOOKMARKED_JOBS} from '../urls/routes';
+import JobScreen from '../screens/JobScreen';
+import HowToApply from '../screens/HowToApply';
 import {getAsyncData} from '../service/asynsStorage';
+import BookmarkedJobs from '../screens/BookmarkedJobs';
 import OnBoarding from '../screens/onboarding/OnBoarding';
 import FullScreenLoader from '../components/FullScreenLoader';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HowToApply from '../screens/HowToApply';
-import JobScreen from '../screens/JobScreen';
-import {PRIMARY} from '../styles/colors';
-import Search from '../screens/Search';
-import BookmarkedJobs from '../screens/BookmarkedJobs';
+import {setAppLoading, setBookmarkedJobs} from '../redux/actions';
+import {HOME, HOW_TO_APPLY, JOB, ONBOARDING, SEARCH, BOOKMARKED_JOBS} from '../urls/routes';
 
 const Stack = createStackNavigator();
 
@@ -27,10 +27,12 @@ class MainNavigator extends Component {
             .catch(() => {})
             .finally(async () => {
                 try {
+                    // Get bookmarked jobs
                     let bookmarkedJobs = await getAsyncData('bookmarkedJobs');
-                    // console.log( "typeof bookmarkedJobs => ", typeof bookmarkedJobs, " bookmarkedJobs => ", bookmarkedJobs);
-                    // console.log( "typeof JSON.parse(bookmarkedJobs) => ", typeof JSON.parse(bookmarkedJobs), " JSON.parse(bookmarkedJobs) => ", JSON.parse(bookmarkedJobs));
+                    // Attempt to Parse them
                     bookmarkedJobs = JSON.parse(bookmarkedJobs);
+
+                    // Check if everything went fine
                     if (!bookmarkedJobs || !Array.isArray(bookmarkedJobs)) {
                         throw new Error("Unknown bookmarked jobs");
                     }
@@ -38,7 +40,6 @@ class MainNavigator extends Component {
                     this.props.setBookmarkedJobs(bookmarkedJobs);
 
                 } catch (e) {
-                    console.log("e => ", e);
                     this.props.setBookmarkedJobs([]);
                 }
             });

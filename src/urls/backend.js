@@ -31,7 +31,7 @@ export const searchJobs = (search, fullTime, location, page = 1) => {
         url = url + `&full_time=true`;
     if (location)
         url = url + `&location=${location.replace(' ', '+')}`;
-    console.log("url => ", url);
+
     return axios.get(url)
         .then(result => {
             return Promise.resolve(result.data);

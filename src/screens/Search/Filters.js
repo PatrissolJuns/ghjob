@@ -17,7 +17,6 @@ const width = Dimensions.get('window').width;
  * @constructor
  */
 const Filters = props => {
-    // console.log("Filters props => ", props);
     const {
         onFilterDone
     } = props;

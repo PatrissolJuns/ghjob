@@ -22,7 +22,6 @@ const RadioButton = props => {
 
     if (selected) {
         useEffect(() => {
-            console.log("inside changed sel");
             setActive(selected);
         }, [selected]);
     }
