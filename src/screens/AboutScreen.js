@@ -5,25 +5,38 @@ import {Linking, StyleSheet, Alert} from 'react-native';
 import WhiteLogoSvg from "../assets/images/white_logo.svg";
 import {GENERAL_STYLE_SETTING, Typography} from '../styles';
 import FastImageBackground from '../components/FastImageBackground';
+import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 
 const _white = '#eff6fe', _gray = '#d9e4ef';
 
 const AboutScreen = () => {
     const handleOnNavigateToLink = (link) => {
-        Linking.canOpenURL(link).then(supported => {
-            if (supported) {
-                Linking.openURL(link)
-                    .catch(error => {
-                        Alert.alert("Something went wrong while opening the link. Please try later");
-                    })
-            } else {
-                Alert.alert("You don't have a correct app to open this link. Please download one first.");
-            }
-        });
+        // Checking if the link is supported for links with custom URL scheme.
+        Linking
+            .canOpenURL(link)
+            .then(supported => {
+                if (supported) {
+                    Linking
+                        .openURL(link)
+                        .catch(error => {
+                            Alert.alert("Something went wrong while opening the link. Please try later");
+                        })
+                } else {
+                    Alert.alert("You don't have a correct app to open this link. Please download one first.");
+                }
+            })
+            .catch(error => {
+                Alert.alert("Something went wrong while opening the link. Please try later");
+            });
     };
 
     return (
         <>
+            <FocusAwareStatusBar
+                animated
+                barStyle="light-content"
+                backgroundColor={"#d01f2d"}
+            />
             <FastImageBackground
                 style={styles.container}
                 source={require('../assets/images/colored_background.jpg')}

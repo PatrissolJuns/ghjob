@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import {SEARCH} from '../urls/routes';
 import {DARK} from '../styles/colors';
 import React, { Component } from 'react';
 import PlText from '../components/PLText';
@@ -11,10 +12,10 @@ import BottomPadding from '../components/BottomPadding';
 import FullScreenLoader from '../components/FullScreenLoader';
 import languageData from '../components/programming-icons/data';
 import {isCloseToBottom, isCloseToTop} from '../service/helper';
+import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
 import FetchFailedComponent from '../components/FetchFailedComponent';
 import {RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
-import {SEARCH} from '../urls/routes';
 
 /**
  * Home Screen
@@ -30,6 +31,7 @@ class Home extends Component {
 
     componentDidMount() {
         this.loadData();
+        // StatusBar.setBackgroundColor(Colors.WHITE_LIGHT, true)
     }
 
     loadData = () => {
@@ -69,6 +71,11 @@ class Home extends Component {
 
         return (
             <View style={styles.wrapper}>
+                <FocusAwareStatusBar
+                    animated
+                    barStyle="dark-content"
+                    backgroundColor={Colors.WHITE_LIGHT}
+                />
                 <HeaderPage
                     headerText={'Home'}
                     navigation={navigation}

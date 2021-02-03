@@ -1,4 +1,5 @@
 import React, {useRef} from 'react';
+import {StatusBar} from 'react-native';
 import {HOME} from '../../urls/routes';
 import Swiper from 'react-native-swiper';
 import OnBoardingOne from './OnBoardingOne';
@@ -19,6 +20,7 @@ const OnBoarding = (props) => {
 
     return (
         <>
+            <StatusBar barStyle="dark-content" backgroundColor={"#eaebf2"} animated />
             <Swiper
                 ref={swiperRef}
                 loop={false}

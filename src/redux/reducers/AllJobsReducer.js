@@ -3,6 +3,7 @@ import {
     ALL_JOBS_SUCCESS,
     ALL_JOBS_FAILURE
 } from '../types';
+import * as _ from 'lodash';
 import Job from '../../models/Job';
 import {sortJobs} from '../../service/helper';
 
@@ -37,8 +38,12 @@ const reducer = (state = initialState, action) => {
                 return newState;
             }
 
-            newState.member.data = sortJobs([...state.member.data, ...newData]);
-            // newState.member.data = [...state.member.data, ...newData];
+            // Merge new data with old one
+            let mergedData = [...state.member.data, ...newData];
+            // Remove duplicates
+            mergedData = _.uniqBy(mergedData, 'id');
+            // Sort by created at
+            newState.member.data = sortJobs(mergedData);
 
             return newState;
         case ALL_JOBS_FAILURE:

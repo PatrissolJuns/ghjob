@@ -1,12 +1,12 @@
 import {connect} from 'react-redux';
-import React, {Component} from 'react';
-import {StatusBar} from 'react-native';
 import Search from '../screens/Search';
-import {PRIMARY} from '../styles/colors';
+import {StatusBar} from 'react-native';
+import React, {Component} from 'react';
 import HomeNavigator from './HomeNavigator';
 import JobScreen from '../screens/JobScreen';
 import HowToApply from '../screens/HowToApply';
 import {getAsyncData} from '../service/asynsStorage';
+import {PRIMARY, WHITE_LIGHT} from '../styles/colors';
 import BookmarkedJobs from '../screens/BookmarkedJobs';
 import OnBoarding from '../screens/onboarding/OnBoarding';
 import FullScreenLoader from '../components/FullScreenLoader';
@@ -68,7 +68,11 @@ class MainNavigator extends Component {
                     <FullScreenLoader />
                 ) : (
                     <>
-                        <StatusBar barStyle="dark-content" hidden />
+                        <StatusBar
+                            animated
+                            barStyle="dark-content"
+                            backgroundColor={WHITE_LIGHT}
+                        />
                         <NavigationContainer>
                             <Stack.Navigator>
                                 {this.state.isNewUser && (

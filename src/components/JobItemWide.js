@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BookedJob from './BookedJob';
 import {JOB} from '../urls/routes';
+import BookedJob from './BookedJob';
 import FastImage from 'react-native-fast-image';
 import { useNavigation } from "@react-navigation/native";
 import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';

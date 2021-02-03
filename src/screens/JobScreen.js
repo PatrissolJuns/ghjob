@@ -16,7 +16,6 @@ import FetchFailedComponent from '../components/FetchFailedComponent';
 import {
     View,
     Alert,
-    Image,
     Share,
     Linking,
     Dimensions,
@@ -85,17 +84,25 @@ class JobScreen extends Component {
      * Open navigation intent
      */
     handleUrlPress = async () => {
-        const url = this.state.job.company.url;
-        // Checking if the link is supported for links with custom URL scheme.
-        const supported = await Linking.canOpenURL(url);
+        const link = this.state.job.company.url;
 
-        if (supported) {
-            // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-            // by some browser in the mobile
-            await Linking.openURL(url);
-        } else {
-            Alert.alert(`Don't know how to open this URL: ${url}`);
-        }
+        // Checking if the link is supported for links with custom URL scheme.
+        Linking
+            .canOpenURL(link)
+            .then(supported => {
+                if (supported) {
+                    Linking
+                        .openURL(link)
+                        .catch(error => {
+                            Alert.alert("Something went wrong while opening the link. Please try later");
+                        });
+                } else {
+                    Alert.alert("You don't have a correct app to open this link. Please download one first.");
+                }
+            })
+            .catch(error => {
+                Alert.alert("Something went wrong while opening the link. Please try later");
+            });
     };
 
     /**
@@ -123,7 +130,7 @@ class JobScreen extends Component {
     };
 
     handleOnBookmarkedPress = () => {
-        this.props.toggleBookmarkedJob(this.state.job.id);
+        this.props.toggleBookmarkedJob(this.state.job);
     };
 
     render() {
@@ -138,7 +145,7 @@ class JobScreen extends Component {
             return (<FetchFailedComponent onRetryClick={this.loadData} />)
         }
 
-        const isBookmarked = bookmarkedJobs.includes(job.id);
+        const isBookmarked = bookmarkedJobs.find(j => j.id === job.id) !== undefined;
 
         return (
             <View style={styles.container}>
