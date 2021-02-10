@@ -16,7 +16,7 @@ GhJob is the right place to find your dream job. We gather here the most popular
 
 ## Screenshots
 
-![Screenshot](https://raw.githubusercontent.com/PatrissolJuns/ghjob/master/assets/app_screenshots.jpg)
+![Screenshot](assets/app_screenshots.jpg)
 
 ## Contributing
 
