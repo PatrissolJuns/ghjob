@@ -1,6 +1,10 @@
 import axios from 'axios';
 import * as API from './../urls/backend';
 
+/**
+ * Set interceptors
+ * @returns {Promise<T | never>}
+ */
 const initAxios = () => {
     return setInterceptors()
         .then(res => Promise.resolve(res))

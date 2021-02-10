@@ -1,8 +1,8 @@
 import 'react-native-gesture-handler';
 import React, {Component} from 'react';
+import initAxios from './src/service/api';
 import MainNavigator from "./src/navigations";
 import initMoment from './src/service/momentService';
-import initAxios from './src/service/api';
 import SplashScreen from 'react-native-splash-screen';
 
 initMoment();
@@ -14,12 +14,12 @@ class App extends Component {
     }
 
     render() {
-    return (
-        <>
-          <MainNavigator />
-        </>
-    );
-  }
+        return (
+            <>
+              <MainNavigator />
+            </>
+        );
+    }
 }
 
 export default App;

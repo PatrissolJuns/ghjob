@@ -1,5 +1,8 @@
 import moment from 'moment';
 
+/**
+ * Customize english date short version
+ */
 const initMoment = () => {
     moment.updateLocale('en', {
         relativeTime : {
