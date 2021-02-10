@@ -5,7 +5,7 @@
 GhJob is the right place to find your dream job. We gather here the most popular companies and organizations around the world.
 
 <p align="center">
-  <a href="https://raw.githubusercontent.com/PatrissolJuns/ghjob/master/assets/GhJob.apk">Download</a>
+  <a href="assets/GhJob.apk">Download</a>
 <p>
 
 ## Powered by
