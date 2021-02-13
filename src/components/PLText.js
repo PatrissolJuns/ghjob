@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Text} from 'react-native-elements';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
 
-const PlText = ({id, name, component: LangComp, onPress}) => {
+const PlText = ({name, component: LangComp, onPress}) => {
     return (
         <TouchableOpacity
             // key={id}
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
 });
 
 PlText.propTypes = {
-    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     component: PropTypes.any.isRequired,
     onPress: PropTypes.func,

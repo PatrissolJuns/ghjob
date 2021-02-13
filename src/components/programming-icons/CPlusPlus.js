@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Svg, Path, G } from 'react-native-svg';
 import {PROGRAMMING_ICON} from '../../config';
+import { Svg, Path, G } from 'react-native-svg';
 
 const CPlusPlus = ({width, height}) => {
     return (

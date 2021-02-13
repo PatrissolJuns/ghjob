@@ -120,14 +120,13 @@ class Home extends Component {
                     </ScrollView>
 
                     <View style={[styles.sector]}>
-                        <Text style={styles.sectionTitle}>Languages</Text>
+                        <Text style={styles.sectionTitle}>Languages & Frameworks</Text>
                     </View>
 
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                        {languageData.map(({id, name, component}) => (
+                        {languageData.map(({name, component}, index) => (
                             <PlText
-                                id={id}
-                                key={id}
+                                key={index}
                                 name={name}
                                 component={component}
                                 onPress={() => navigation.navigate(SEARCH, {

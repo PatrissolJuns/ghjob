@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Svg, Path, Defs, Use, ClipPath, G, Image } from 'react-native-svg';
 import {PROGRAMMING_ICON} from '../../config';
+import { Svg, Path, Defs, Use, ClipPath, G, Image } from 'react-native-svg';
 
 const Php = ({width, height, color}) => {
     return (
