@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Filters from './Filters';
 import NotFound from './NotFound';
 import Job from '../../models/Job';
@@ -88,6 +89,13 @@ class Search extends Component {
             })
     };
 
+    debounceSearch = () => {
+        if (!this.debouncedFn) {
+            this.debouncedFn = _.debounce(this.performSearch, 500);
+        }
+        this.debouncedFn();
+    };
+
     // sheetRef = null;
     sheetRef = React.createRef();
 
@@ -109,7 +117,7 @@ class Search extends Component {
     onSearchChange = (text) => {
         this.setState(
             {searched: text},
-            () => this.performSearch()
+            () => this.debounceSearch()
         )
     };
 
