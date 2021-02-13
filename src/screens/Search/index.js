@@ -156,7 +156,7 @@ class Search extends Component {
         let filteredJobs = jobs;
 
         if (error) {
-            return (<FetchFailedComponent onRetryClick={this.loadData} />)
+            return (<FetchFailedComponent onRetryClick={this.performSearch} />)
         }
 
         if (this.sheetRef && this.sheetRef.current) this.sheetRef.current.snapTo(showFilter ? 0 : 1);
