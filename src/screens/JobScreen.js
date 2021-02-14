@@ -110,9 +110,11 @@ class JobScreen extends Component {
      */
     handleOnShare = async () => {
         try {
+            const link = `http://www.m.ghjob.com/job/${this.state.job.id}`;
+            const googlePlayStoreLink = "https://play.google.com/store/apps/details?id=com.ghjob";
             const result = await Share.share({
-                message: `Hi, Please check out this job: ${this.state.job.title}. Don't forget to download GhJob to get more jobs`,
-                url: this.state.job.url
+                message: `Hi, Please check out this excellent job ${this.state.job.title} on ${link}. Don't forget to download GhJob to get more jobs ${googlePlayStoreLink}`,
+                url: link,
             });
 
             if (result.action === Share.sharedAction) {

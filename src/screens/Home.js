@@ -1,9 +1,9 @@
 import {connect} from 'react-redux';
-import {SEARCH} from '../urls/routes';
 import {DARK} from '../styles/colors';
 import React, { Component } from 'react';
 import PlText from '../components/PLText';
 import {Text} from 'react-native-elements';
+import {JOB, SEARCH} from '../urls/routes';
 import {getAllJobs} from '../redux/actions';
 import HeaderPage from '../components/HeaderPage';
 import JobItemWide from '../components/JobItemWide';
@@ -15,7 +15,7 @@ import {isCloseToBottom, isCloseToTop} from '../service/helper';
 import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 import {Colors, GENERAL_STYLE_SETTING, Typography} from '../styles';
 import FetchFailedComponent from '../components/FetchFailedComponent';
-import {RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
+import {RefreshControl, ScrollView, StyleSheet, View, Linking} from 'react-native';
 
 /**
  * Home Screen
@@ -31,8 +31,38 @@ class Home extends Component {
 
     componentDidMount() {
         this.loadData();
-        // StatusBar.setBackgroundColor(Colors.WHITE_LIGHT, true)
+
+        if (Platform.OS === 'android') {
+            Linking.getInitialURL().then(url => {
+                this.navigate(url);
+            });
+        } else {
+            Linking.addEventListener('url', this.handleOpenURL);
+        }
     }
+
+    componentWillUnmount() {
+        Linking.removeEventListener('url', this.handleOpenURL);
+    }
+
+    handleOpenURL = (event) => {
+        if (event && event.hasOwnProperty('url')) this.navigate(event.url);
+    };
+
+    navigate = (url) => {
+        if (url) {
+            const { navigate } = this.props.navigation;
+            const route = url.replace(/.*?:\/\//g, '');
+            const id = route.match(/\/([^\/]+)\/?$/)[1];
+            const routeName = route.split('/')[0];
+
+            if (routeName === 'ghjob' || routeName === 'www.m.ghjob.com') {
+                navigate(JOB, {
+                    jobId: id,
+                });
+            }
+        }
+    };
 
     loadData = () => {
         this.props.getAllJobs(this.props.allJobs.page);
