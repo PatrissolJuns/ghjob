@@ -1,6 +1,7 @@
 import React from 'react';
 import {ABOUT_LINKS} from '../config';
 import FontText from '../components/FontText';
+const { version } = require('../../package.json');
 import {Linking, StyleSheet, Alert} from 'react-native';
 import WhiteLogoSvg from "../assets/images/white_logo.svg";
 import {GENERAL_STYLE_SETTING, Typography} from '../styles';
@@ -60,7 +61,7 @@ const AboutScreen = () => {
                 </FontText>
 
                 <FontText style={styles.footer}>
-                    Version 1.0.0 © 2020 Designed by <FontText onPress={() => handleOnNavigateToLink(ABOUT_LINKS.AUTHOR)} style={styles.name}>PatrissolJuns</FontText>
+                    Version {version} © 2020 Designed by <FontText onPress={() => handleOnNavigateToLink(ABOUT_LINKS.AUTHOR)} style={styles.name}>PatrissolJuns</FontText>
                 </FontText>
 
             </FastImageBackground>
