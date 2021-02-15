@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "497175671175",
+    "project_id": "ghjob-d9608",
+    "storage_bucket": "ghjob-d9608.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497175671175:android:d5a8f60f1c02cf68e72322",
+        "android_client_info": {
+          "package_name": "com.ghjob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497175671175-kqn80eontiro5l9m7101imij3c2mkgmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3YjJ0MjmnXCWd0-WF3Nv5GzaqlevK0ac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497175671175-kqn80eontiro5l9m7101imij3c2mkgmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
