@@ -1,7 +1,26 @@
 {
   "name": "GhJob",
   "version": "1.3.0",
-  "private": true,
+  "description": "Amazing mobile app for programmer job-seeker",
+  "author": {
+    "name": "Patrissol Kenfack",
+    "email": "patrissolkenfack@gmail.com",
+    "url": "https://patrissol-juns.com"
+  },
+  "homepage": "https://github.com/PatrissolJuns/ghjob",
+  "repository": "https://github.com/PatrissolJuns/ghjob",
+  "license": "MIT",
+  "keywords": [
+    "ghjob",
+    "android",
+    "ios",
+    "react",
+    "react-native",
+    "github jobs",
+    "jobs",
+    "github",
+    "api"
+  ],
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
