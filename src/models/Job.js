@@ -14,7 +14,7 @@ export default class Job {
         this.title = job.title;
         this.location = job.location;
         this.description = job.description;
-        this.descNoTags = removeTags(job.description);
+        this.descNoTags = job.description ? removeTags(job.description) : "";
         this.howToApply = job.how_to_apply;
         this.createdAt = moment(new Date(job.created_at));
     }

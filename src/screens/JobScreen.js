@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import moment from 'moment';
 import Job from '../models/Job';
 import {connect} from 'react-redux';
@@ -23,6 +24,7 @@ import {
     StyleSheet,
     TouchableOpacity,
 } from 'react-native';
+import NormalLoader from '../components/NormalLoader';
 
 const width = Dimensions.get('window').width;
 const tagsColors = tags.reduce((acc, b) => ({...acc, [b]: {color: Colors.DARK}}), {});
@@ -40,32 +42,32 @@ class JobScreen extends Component {
         if (this.job)
             this.job.createdAt = moment(new Date(this.job.createdAt));
 
+        // Force data fetching
+        if (this.job)
+            this.jobId = this.job.id;
+
         this.state = {
-            job: this.job ? this.job : null,
+            error: null,
             activeTab: 0,
             loading: false,
+            job: this.job ? this.job : null,
         }
     }
 
     componentDidMount() {
-        if (!this.job) {
-            this.loadData();
-        }
+        this.loadData();
     }
 
     loadData = () => {
         this.setState({loading: true});
-        getOneJobById(this.props.route.params.jobId)
-        // getOneJobById("1731001f-91e1-415e-a865-898a9f1279fa")
-            .then(job => this.setState({job: new Job(job)}))
-            .catch(() => {
-                Alert.alert("An error occur. Please try again later");
-            })
-            .finally(() => this.setState({loading: false}));
+        getOneJobById(this.jobId)
+            .then(job => this.setState({loading: false, job: new Job(job)}))
+            .catch((error) => this.setState({loading: false, error}));
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.route.params.jobId !== this.props.route.params.jobId) {
+        if (prevProps.route.params.jobId !== this.props.route.params.jobId
+            || !_.isEqual(prevProps.route.params.job, this.props.route.params.job) ) {
             this.loadData();
         }
     }
@@ -136,10 +138,20 @@ class JobScreen extends Component {
     };
 
     render() {
-        const { job, activeTab, loading } = this.state;
+        const { job, activeTab, loading, error } = this.state;
         const { bookmarkedJobs } = this.props;
 
-        if (loading) {
+        if (error) {
+            return (
+                <FetchFailedComponent
+                    onRetryClick={this.loadData}
+                    backText={"Home"}
+                    backOnClick={this.onBackPressed}
+                />
+            )
+        }
+
+        if (!this.job && loading) {
             return (<FullScreenLoader />)
         }
 
@@ -237,14 +249,18 @@ class JobScreen extends Component {
 
                 {activeTab === 0 ? (
                     <ScrollView style={[styles.content]}>
-                        <HTML
-                            html={job.description}
-                            // html={job.descNoTags}
-                            // tagsStyles={{...tagsColor}}
-                            // tagsStyles={{...tagsColor}}
-                            // contentWidth={width}
-                            imagesMaxWidth={width}
-                        />
+                        {!job.description ? (
+                            <NormalLoader />
+                        ) : (
+                            <HTML
+                                html={job.description}
+                                // html={job.descNoTags}
+                                // tagsStyles={{...tagsColor}}
+                                // tagsStyles={{...tagsColor}}
+                                // contentWidth={width}
+                                imagesMaxWidth={width}
+                            />
+                        )}
                     </ScrollView>
                 ) : (
                     <View style={{flex: 1, alignItems: 'center', }}>
@@ -296,14 +312,18 @@ class JobScreen extends Component {
                             onPress={() => this.props.navigation.navigate(HOW_TO_APPLY, {
                                 howToApply: job.howToApply
                             })}
+                            disabled={!job.howToApply}
                             style={[
                                 styles.buttonsApply,
                             ]}
                         >
-                            <FontText style={{color: Colors.WHITE, ...Typography.FONT_BOLD}}
-                            >
-                                Apply jor this job
-                            </FontText>
+                            {!job.howToApply ? (
+                                <NormalLoader loaderColor={"#fff"} loaderSize={"small"} />
+                            ) : (
+                                <FontText style={{color: Colors.WHITE, ...Typography.FONT_BOLD}}>
+                                    Apply jor this job
+                                </FontText>
+                            )}
                         </TouchableOpacity>
                     </View>
                 </View>

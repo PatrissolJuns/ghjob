@@ -19,4 +19,4 @@ export const ABOUT_LINKS = {
     PROJECT: 'https://github.com/PatrissolJuns/ghjob',
 };
 
-export const BACKEND_URL = 'https://jobs.github.com/';
+export const BACKEND_URL = 'https://9f66c678cf47.ngrok.io/';
