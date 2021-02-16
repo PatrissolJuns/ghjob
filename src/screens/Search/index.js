@@ -10,17 +10,19 @@ import MaterialChip from '../../components/Chip';
 import {FONT_BOLD} from '../../styles/typography';
 import BottomSheet from 'reanimated-bottom-sheet';
 import JobItemWide from '../../components/JobItemWide';
-import {getPublishedAtTime} from '../../service/helper';
 import {Colors, GENERAL_STYLE_SETTING} from '../../styles';
+import BottomPadding from '../../components/BottomPadding';
 import PublishedTimeType from '../../enums/PublishedTimeType';
 import CustomHeaderPage from '../../components/CustomHeaderPage';
 import FetchFailedComponent from '../../components/FetchFailedComponent';
+import {getPublishedAtTime, isCloseToBottom, isCloseToTop} from '../../service/helper';
 import {
     View,
     TextInput,
     ScrollView,
     Dimensions,
     StyleSheet,
+    RefreshControl,
     TouchableOpacity,
     ActivityIndicator,
 } from 'react-native';
@@ -41,6 +43,26 @@ class Search extends Component {
         super(props);
 
         const searchParams = this.props.route.params ? this.props.route.params.searchParams : null;
+
+        this.intialState = {
+            searched: searchParams && searchParams.searched ? searchParams.searched : '',
+            showFilter: false,
+            filters: {
+                fullTime: searchParams && searchParams.fullTime
+                    ? searchParams.fullTime : defaultFilters.fullTime,
+                location: searchParams && searchParams.location
+                    ? searchParams.location : defaultFilters.location,
+                publishedAt: searchParams && searchParams.publishedAt
+                    ? searchParams.publishedAt : defaultFilters.publishedAt,
+            },
+            jobs: [],
+            error: null,
+            loading: false,
+            page: 1,
+            canLoadMore: true,
+            showScrollLoader: false,
+            refreshing: false,
+        };
 
         this.state = {
             searched: searchParams && searchParams.searched ? searchParams.searched : '',
@@ -73,7 +95,7 @@ class Search extends Component {
             this.state.searched.length === 0 ? null : this.state.searched,
             this.state.filters.fullTime,
             this.state.filters.location.length === 0 ? null : this.state.filters.location,
-            this.state.page,
+            shouldRefresh ? 1 : this.state.page,
         )
             .then(result => {
                 const data = result.map(j => new Job(j));
@@ -81,7 +103,10 @@ class Search extends Component {
                     jobs: shouldRefresh ? data : [...prevState.jobs, ...data],
                     loading: false,
                     error: null,
-                    canLoadMore: result.length !== 0
+                    page: shouldRefresh ? 1 : prevState.page,
+                    canLoadMore: result.length !== 0,
+                    showScrollLoader: false,
+                    refreshing: false,
                 }));
             })
             .catch(error => {
@@ -150,6 +175,18 @@ class Search extends Component {
         );
     };
 
+    loadMoreData = () => {
+        this.setState(prevState => ({showScrollLoader: true, page: prevState.page + 1}), () => {
+            this.performSearch(false);
+        });
+    };
+
+    onRefresh = () => {
+        this.setState(prevState => ({...this.intialState}), () => {
+            this.performSearch(false);
+        });
+    };
+
     render() {
         const { searched, showFilter, loading, error, jobs, filters, canLoadMore, showScrollLoader, refreshing } = this.state;
 
@@ -170,7 +207,28 @@ class Search extends Component {
 
         return (
             <>
-                <ScrollView style={styles.container}>
+                <ScrollView
+                    onScroll={({nativeEvent})=>{
+                        if (isCloseToTop(nativeEvent)) {
+                            // do something
+                        }
+
+                        if (isCloseToBottom(nativeEvent)) {
+                            // do something
+                            if (canLoadMore && !showScrollLoader) {
+                                this.loadMoreData();
+                            }
+                        }
+                    }}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={this.onRefresh}
+                            colors={[Colors.PRIMARY, Colors.SECONDARY]}
+                        />
+                    }
+                    style={styles.container}
+                >
                     {showFilter && (<View style={styles.layer} />)}
                     <CustomHeaderPage
                         title="Search"
@@ -276,7 +334,10 @@ class Search extends Component {
                                 ))}
                             </View>
                         )}
-
+                        <BottomPadding
+                            showLoader={showScrollLoader}
+                            backgroundColor={Colors.WHITE_LIGHT}
+                        />
                     </View>
                 </ScrollView>
                 <BottomSheet

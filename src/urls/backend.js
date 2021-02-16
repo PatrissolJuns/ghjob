@@ -24,7 +24,7 @@ export const searchJobs = (search, fullTime, location, page = 1) => {
         url = url + `&full_time=true`;
     if (location)
         url = url + `&location=${location.replace(' ', '+')}`;
-
+    console.log("url => ", url);
     return fetch(BASE + url)
             .then(response => response.json())
             .then(result => Promise.resolve(result))
