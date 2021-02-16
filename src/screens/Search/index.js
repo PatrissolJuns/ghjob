@@ -116,7 +116,7 @@ class Search extends Component {
 
     debounceSearch = () => {
         if (!this.debouncedFn) {
-            this.debouncedFn = _.debounce(this.performSearch, 500);
+            this.debouncedFn = _.debounce(this.performSearch, 350);
         }
         this.debouncedFn();
     };
