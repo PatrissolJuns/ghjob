@@ -43,7 +43,7 @@ const processNotification = (notification) => {
                 number: 10, // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
                 // actions: '["Yes", "No"]', // (Android only) See the doc for notification actions to know more
             };
-            PushNotification.localNotification(details);
+            // PushNotification.localNotification(details);
         }
     }
 };

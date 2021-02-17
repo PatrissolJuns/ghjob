@@ -12,7 +12,7 @@ export const getOneJobById = (jobId) => {
 export const getAllJobs = (page = 1) => {
     return fetch(`${BASE}jobs?page=${page}`)
             .then(response => response.json())
-            .then(result => Promise.resolve(result))
+            .then(result => Promise.resolve(result.docs))
             .catch(error => Promise.reject(error));
 };
 
@@ -27,7 +27,7 @@ export const searchJobs = (search, fullTime, location, page = 1) => {
 
     return fetch(BASE + url)
             .then(response => response.json())
-            .then(result => Promise.resolve(result))
+            .then(result => Promise.resolve(result.docs))
             .catch(error => Promise.reject(error));
 };
 
@@ -39,12 +39,9 @@ export const searchJobs = (search, fullTime, location, page = 1) => {
 export const sendTokenToServer = (token) => {
     return fetch(`${BASE}receive-token?token=${token}`)
             .then(response => response.json())
-            .then(result => {
-                if (result && result.status) {
-                    return Promise.resolve(result);
-                } else {
-                    return Promise.reject(result);
-                }
-            })
+            .then(result => result && result.status
+                ? Promise.resolve(result)
+                : Promise.reject(result)
+            )
             .catch((error) => Promise.reject(error));
 };
