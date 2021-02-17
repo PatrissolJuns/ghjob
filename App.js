@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import React, {Component} from 'react';
 import MainNavigator from "./src/navigations";
 import initMoment from './src/service/momentService';
+import {sendTokenToServer} from './src/urls/backend';
 import SplashScreen from 'react-native-splash-screen';
 import messaging from '@react-native-firebase/messaging';
 import {getAsyncData, setAsyncData} from './src/service/asynsStorage';
@@ -19,23 +20,6 @@ async function requestUserPermission() {
         authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 }
 
-/**
- * Send to token to the backend server
- * @param token
- * @returns {Promise<any | never>}
- */
-const sendTokenToServer = (token) => {
-    return fetch(`https://cf02f7477957.ngrok.io/receive-token?token=${token}`)
-        .then(response => response.json())
-        .then(result => {
-            if (result && result.status) {
-                return Promise.resolve(result);
-            } else {
-                return Promise.reject(result);
-            }
-        })
-        .catch((error) => Promise.reject(error));
-};
 
 /**
  * Get token from firebase

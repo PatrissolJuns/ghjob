@@ -24,9 +24,27 @@ export const searchJobs = (search, fullTime, location, page = 1) => {
         url = url + `&full_time=true`;
     if (location)
         url = url + `&location=${location.replace(' ', '+')}`;
-    console.log("url => ", url);
+
     return fetch(BASE + url)
             .then(response => response.json())
             .then(result => Promise.resolve(result))
             .catch(error => Promise.reject(error));
+};
+
+/**
+ * Send to token to the backend server
+ * @param token
+ * @returns {Promise<any | never>}
+ */
+export const sendTokenToServer = (token) => {
+    return fetch(`${BASE}receive-token?token=${token}`)
+            .then(response => response.json())
+            .then(result => {
+                if (result && result.status) {
+                    return Promise.resolve(result);
+                } else {
+                    return Promise.reject(result);
+                }
+            })
+            .catch((error) => Promise.reject(error));
 };

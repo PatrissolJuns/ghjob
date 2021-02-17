@@ -1,6 +1,6 @@
 {
   "name": "GhJob",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "Amazing mobile app for programmer job-seeker",
   "author": {
     "name": "Patrissol Kenfack",
@@ -12,14 +12,16 @@
   "license": "MIT",
   "keywords": [
     "ghjob",
+    "github jobs",
+    "jobs",
+    "github",
+    "api",
     "android",
     "ios",
     "react",
     "react-native",
-    "github jobs",
-    "jobs",
-    "github",
-    "api"
+    "redux",
+    "redux-thunk"
   ],
   "scripts": {
     "android": "react-native run-android",
