@@ -4,9 +4,9 @@
 
 GhJob is the right place to find your dream job. We gather here the most popular companies and organizations around the world.
 
-<p align="center">
-  <a id="raw-url" href="https://github.com/PatrissolJuns/ghjob/raw/master/assets/GhJob.apk" download>Download</a>
-<p>
+You can get the android app on play store
+[![Google play logo](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.ghjob)
+
 
 ## Powered by
 
