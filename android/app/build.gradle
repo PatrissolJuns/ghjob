@@ -148,8 +148,8 @@ android {
         applicationId "com.ghjob"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3145735
-        versionName "2.1.0"
+        versionCode 3145737
+        versionName "2.2.0"
         multiDexEnabled true
     }
     splits {

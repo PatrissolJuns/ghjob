@@ -69,7 +69,8 @@ class Home extends Component {
             .then(() => {
                 // Load more data since we only fetch 15 at time
                 this.loadMoreData();
-            });
+            })
+            .catch(() => null);
     };
 
     loadMoreData = () => {
@@ -97,6 +98,7 @@ class Home extends Component {
         }*/
 
         if (error) {
+            console.error("error => ", error);
             return (<FetchFailedComponent onRetryClick={this.loadData} />)
         }
 

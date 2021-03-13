@@ -45,3 +45,25 @@ export const sendTokenToServer = (token) => {
             )
             .catch((error) => Promise.reject(error));
 };
+
+/**
+ * Send errors to backend
+ * @param error
+ * @returns {Promise<any | never>}
+ */
+export const saveNewError = (error) => {
+    return fetch(`${BASE}errors`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({error}),
+        })
+        .then(response => response.json())
+        .then(result => result && result.status
+            ? Promise.resolve(result)
+            : Promise.reject(result)
+        )
+        .catch((error) => Promise.reject(error));
+};

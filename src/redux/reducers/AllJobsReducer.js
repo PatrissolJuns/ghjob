@@ -48,11 +48,7 @@ const reducer = (state = initialState, action) => {
             return newState;
         case ALL_JOBS_FAILURE:
             return {
-                member: {
-                    data: null,
-                    canLoadMore: false,
-                },
-                loading: false,
+                ...initialState,
                 error: action.payload.error
             };
         default: return state;
